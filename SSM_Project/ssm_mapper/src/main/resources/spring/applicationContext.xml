@@ -22,6 +22,20 @@
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" name="factory">
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.ssm.domain"/>
+        <!--开启分页插件pageHelper-->
+        <property name="plugins">
+            <array>
+                <!--传入plugins插件-->
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties" >
+                        <props>
+                            <prop key="helperDialect">oracle</prop>
+                            <prop key="reasonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!--将mybatis交给spring管理-->
