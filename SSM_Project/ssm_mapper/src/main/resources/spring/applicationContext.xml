@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置扫描-->
+    <context:component-scan base-package="com.ssm.mapper"/>
+
+    <!--配置数据源-->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!--创建sqlSessionFactoryBean对象-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" name="factory">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="com.ssm.domain"/>
+    </bean>
+
+    <!--将mybatis交给spring管理-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ssm.mapper"/>
+     </bean>
+
+
+</beans>
