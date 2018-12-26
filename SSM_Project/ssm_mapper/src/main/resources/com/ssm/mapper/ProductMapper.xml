@@ -30,4 +30,9 @@
        #{productDesc},
        #{productStatus})
    </insert>
+
+    <!--删除操作-->
+    <delete id="delProduct" parameterType="string">
+        DELETE from PRODUCT where id = #{id}
+    </delete>
 </mapper>

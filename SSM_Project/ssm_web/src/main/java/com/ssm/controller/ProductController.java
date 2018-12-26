@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("product")
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class ProductController {
      * @param model
      * @return
      */
-    @RequestMapping("findAll")
+    @RequestMapping("/findAll")
     public String findAll(PageBean pageBean,Model model){
 
         List<Product> productList = productService.findAll(pageBean);
@@ -35,7 +35,7 @@ public class ProductController {
     /**
      * 添加商品
      */
-        @RequestMapping("addProduct")
+    @RequestMapping("/addProduct")
     public String addProduct(Product product){
         productService.addProduct(product);
         return "redirect:/product/findAll";
@@ -45,10 +45,13 @@ public class ProductController {
     /**
      * 删除商品
      */
-    @RequestMapping("delProduct")
-    public String delProdut(Product product){
-        productService.delProduct(product);
-        return "forward:/product/findAll";
+    @RequestMapping("/delProduct")
+    public String delProdut(String[] ids){
+        System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQQ");
+
+
+        productService.delProduct(ids);
+        return "redirect:/product/findAll";
     }
 
 

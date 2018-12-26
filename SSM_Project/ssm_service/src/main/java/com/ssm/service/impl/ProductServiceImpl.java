@@ -25,12 +25,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAll(PageBean pageBean) {
 //        设置总记录数
-        int totalCounts = productMapper.findTotalCounts();
-        pageBean.setTotalCounts(totalCounts);
+//        int totalCounts = productMapper.findTotalCounts();
+//        pageBean.setTotalCounts(totalCounts);
 //        设置总页面数
-        int totalPage = (int) Math.ceil(totalCounts*1.0/pageBean.getRows());
-        pageBean.setTotalPage(totalPage);
-        pageBean.setTotalPage((int) Math.ceil(totalCounts*1.0/pageBean.getRows()));
+//        int totalPage = (int) Math.ceil(totalCounts*1.0/pageBean.getRows());
+//        pageBean.setTotalPage(totalPage);
+//        pageBean.setTotalPage((int) Math.ceil(totalCounts*1.0/pageBean.getRows()));
         return productMapper.findAll(pageBean);
     }
 
@@ -48,8 +48,13 @@ public class ProductServiceImpl implements ProductService {
      * 删除商品
      */
     @Override
-    public void delProduct(Product product) {
-//        productMapper.delProduct(product);
+    public void delProduct(String[] ids) {
+        if(ids != null && ids.length>0){
+            for (String id : ids) {
+                System.out.println(id);
+                productMapper.delProduct(id);
+            }
+        }
     }
 
 

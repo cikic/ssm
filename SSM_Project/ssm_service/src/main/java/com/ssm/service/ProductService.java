@@ -11,5 +11,5 @@ public interface ProductService {
 
     void addProduct(Product product);
 
-    void delProduct(Product product);
+    void delProduct( String[] ids);
 }

@@ -13,4 +13,6 @@ public interface ProductMapper {
     void addProduct(Product product);
 
     int findTotalCounts();
+
+    void delProduct(String id);
 }
